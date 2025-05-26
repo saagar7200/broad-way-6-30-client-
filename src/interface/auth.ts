@@ -10,6 +10,7 @@ export interface ILogin {
 export interface IRegister {
     email:string;
     password:string,
-    confirmPassword:string,
-    fullName:string
+    confirm_password:string,
+    full_name:string
+    user_name:string
 }
