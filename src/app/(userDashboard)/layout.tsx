@@ -1,3 +1,5 @@
+'use client'
+import { withAuth } from "@/components/hoc/with-auth"
 import { Header } from "@/components/layout/header"
 import Sidebar from "@/components/layout/sidebar"
 import { ReactNode } from "react"
@@ -21,4 +23,4 @@ const Layout = ({children}:Readonly<{children:ReactNode}>) =>{
 }
 
 
-export default Layout
+export default withAuth(Layout,['USER'])

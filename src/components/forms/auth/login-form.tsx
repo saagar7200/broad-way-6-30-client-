@@ -10,6 +10,7 @@ import { CiLock,CiMail } from "react-icons/ci";
 import { LuAsterisk } from "react-icons/lu";
 import {useMutation} from '@tanstack/react-query'
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie'
 import toast from 'react-hot-toast';
 const LoginForm = () => {
     const router = useRouter()
@@ -29,6 +30,7 @@ const LoginForm = () => {
         onSuccess:(data:any)=>{
                 console.log('login success',data)
                 localStorage.setItem('user',JSON.stringify(data.data))
+                Cookies.set('access_token',data?.access_token)
                 reset()
                 toast.success(data?.message ??'Login Success')
                 router.replace('/')
