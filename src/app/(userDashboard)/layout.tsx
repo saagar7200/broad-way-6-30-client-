@@ -6,8 +6,8 @@ import { ReactNode } from "react"
 
 const Layout = ({children}:Readonly<{children:ReactNode}>) =>{
     return (
-        <div className='flex w-full h-full overflow-hidden tracking-wider'>
-            <div className='min-h-[100vh] min-w-[300px] border-r border-gray-500'>
+        <div className='flex w-full h-full overflow-y-hidden tracking-wider'>
+            <div className='min-h-[100vh] lg:min-w-[300px] border-r border-gray-500'>
                 <Sidebar/>
             </div>
             <div className='h-full w-full'>

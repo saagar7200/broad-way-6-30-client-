@@ -4,7 +4,7 @@ import React from 'react'
 
 const RegisterPage = () => {
   return (
-         <main className='h-full flex justify-center items-center tracking-wider '>
+         <main className='px-2 md:px-0 h-full flex justify-center items-center tracking-wider '>
        <div className='border border-blue-500 w-[500px] min-h-[400px] rounded-md shadow-md p-6' >
 
         {/* page heading */}

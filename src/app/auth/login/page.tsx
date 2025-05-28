@@ -4,7 +4,7 @@ import React from 'react'
 
 const LoginPage = () => {
   return (
-    <main className='h-full flex justify-center items-center tracking-wider '>
+    <main className='h-full flex justify-center items-center tracking-wider px-2 md:px-0'>
        <div className='border border-blue-500 w-[400px] min-h-[400px] rounded-md shadow-md p-6' >
 
         {/* page heading */}
