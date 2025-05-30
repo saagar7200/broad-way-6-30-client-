@@ -10,13 +10,13 @@ interface IProps {
 
 const PageHeading:FC<IProps> = ({title,buttonText,link}) => {
   return (
-    <div className='w-full tracking-wider flex items-center justify-between'>
+    <div className='w-full tracking-wider  sm:flex items-center justify-between'>
         <div>
-            <h1 className='font-bold text-lg md:text-xl text-gray-800'>{title}</h1>
+            <h1 className='text-center sm:text-start font-bold text-2xl md:text-xl text-gray-800'>{title}</h1>
         </div>
-        <div >
+        <div className='mt-4 sm:mt-0'>
             <Link href={link}>
-                <div className='rounded-md text-lg  p-3 bg-blue-500 text-white font-bold'>
+                <div className='text-center rounded-md text-lg  p-3 bg-blue-500 text-white font-bold'>
                 {buttonText}
                 </div>
             </Link>

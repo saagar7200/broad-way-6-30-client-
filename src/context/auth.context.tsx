@@ -3,7 +3,7 @@ import {createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffec
 
 interface IUser {
     full_name:string,
-    full_name:string,
+    user_name:string,
     email:string,
     password:string,
     createdAt:string,

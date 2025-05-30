@@ -3,7 +3,7 @@ import CategoryForm from '../forms/category/category-form'
 
 const Create = () => {
   return (
-    <div>
+    <div className='w-full h-full flex justify-center mt-10'>
         <CategoryForm/>
     </div>
   )
