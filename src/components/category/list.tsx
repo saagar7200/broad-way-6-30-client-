@@ -4,59 +4,29 @@ import Table from '../common/table'
 import {
     createColumnHelper,
   } from '@tanstack/react-table'
-type Person = {
-    firstName: string
-    lastName: string
-    age: number
-    visits: number
-    status: string
-    progress: number
-  }
+
+import {useQuery} from '@tanstack/react-query'
+import { getAllCategory } from '@/api/category.api'
+import {toast} from 'react-hot-toast'
+
   
-  const defaultData: Person[] = [
-    {
-      firstName: 'tanner',
-      lastName: 'linsley',
-      age: 24,
-      visits: 100,
-      status: 'In Relationship',
-      progress: 50,
-    },
-    {
-      firstName: 'tandy',
-      lastName: 'miller',
-      age: 40,
-      visits: 40,
-      status: 'Single',
-      progress: 80,
-    },
-    {
-      firstName: 'joe',
-      lastName: 'dirte',
-      age: 45,
-      visits: 20,
-      status: 'Complicated',
-      progress: 10,
-    },
-  ]
-  
-  const columnHelper = createColumnHelper<Person>()
+  const columnHelper = createColumnHelper<any>()
   
   const columns = [
-    columnHelper.accessor('firstName', {
+    columnHelper.accessor('name', {
       cell: info => info.getValue(),
       header: () => <span>Category Name</span>,
     }),
-    columnHelper.accessor(row => row.lastName, {
-      id: 'lastName',
-      cell: info => <i>{info.getValue()}</i>,
+    columnHelper.accessor('description', {
+      id: 'description',
+      cell: info => <i>{info.getValue() ?? '-'}</i>,
       header: () => <span>Description</span>,
     }),
-    columnHelper.accessor('age', {
+    columnHelper.accessor('createdAt', {
       header: () => <span>Created At</span>,
       cell: info => info.renderValue(),
     }),
-    columnHelper.accessor('visits', {
+    columnHelper.accessor('updatedAt', {
       header: () => <span >Updated At</span>,
     }),
     columnHelper.accessor('status', {
@@ -67,11 +37,21 @@ type Person = {
 
 const CategoryList = () =>{
 
+    const {data,isLoading,error} = useQuery({
+        queryFn:getAllCategory,
+        queryKey:['get-all-category']
+    })
+    if(error){
+        toast.error(error?.message)
+        return
+    }
+
     return(
         <div className='w-full mt-14'>
             <Table
-                data={defaultData}
+                data={data?.data}
                 columns={columns}
+                isLoading={isLoading}
             />
         </div>
     )

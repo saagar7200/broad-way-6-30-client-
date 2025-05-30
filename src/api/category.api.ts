@@ -15,3 +15,18 @@ export const createCategory = async(data:ICategory)=>{
     }
 
 }
+
+export const getAllCategory = async()=>{
+    try {
+    const response = await apiInstance.get(`/category/user`)
+    console.log(response)
+    return response.data
+        
+    } catch (error:any) {
+        console.log(error)
+        throw error.response.data
+        
+    }
+
+}
+
