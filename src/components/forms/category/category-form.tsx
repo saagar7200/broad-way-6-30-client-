@@ -5,13 +5,17 @@ import Input from '@/components/common/input';
 import { ICategory } from '@/interface/category.interface';
 import { CategorySchema } from '@/schemas/category.schema';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation ,useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { GoPlus } from "react-icons/go";
 
 const CategoryForm = () => {
+
+  const queryClient = useQueryClient()
+  const router = useRouter()
 
   const {register,handleSubmit,reset,formState:{errors}} = useForm({
     defaultValues:{
@@ -28,7 +32,8 @@ const CategoryForm = () => {
     onSuccess:(data)=>{
       toast.success(data?.message ?? 'Category created')
       reset()
-
+      queryClient.invalidateQueries({queryKey:['get-all-category']})
+      router.replace('/categories')
     },
     onError:(error)=>{
       toast.success(error?.message ?? 'Operation failed')
@@ -79,7 +84,7 @@ const CategoryForm = () => {
           <button 
             disabled={isPending}
             type='submit'
-            className='disabled:bg-blue-300 disabled:cursor-pointer w-full text-center cursor-pointer tracking-wider flex items-center justify-center gap-1 bg-blue-500 text-white text-lg font-bold rounded-md px-4 py-3'
+            className='disabled:bg-blue-300 disabled:cursor-not-allowed w-full text-center cursor-pointer tracking-wider flex items-center justify-center gap-1 bg-blue-500 text-white text-lg font-bold rounded-md px-4 py-3'
             >
            <span>{isPending ? 'Creating' :"Create"}</span>
            <GoPlus size={28}/>
