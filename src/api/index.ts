@@ -8,9 +8,19 @@ const getToken = () =>{
 
 const apiInstance = axios.create({
     baseURL:url,
-    headers:{
-        Authorization:`BEARER ${getToken()}`
-    }
+    
 })
+
+apiInstance.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  console.log('interceptor',config)
+
+  config.headers.Authorization = `BEARER ${getToken()}`
+  return config;
+  
+}, function (error) {
+  // Do something with request error
+  return Promise.reject(error);
+});
 
 export default apiInstance
