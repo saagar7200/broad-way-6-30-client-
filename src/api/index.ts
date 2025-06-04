@@ -12,14 +12,14 @@ const apiInstance = axios.create({
 })
 
 apiInstance.interceptors.request.use(function (config) {
-  // Do something before request is sent
-  console.log('interceptor',config)
 
-  config.headers.Authorization = `BEARER ${getToken()}`
+  if(getToken()){
+  
+    config.headers.Authorization = `BEARER ${getToken()}`
+  }
   return config;
   
 }, function (error) {
-  // Do something with request error
   return Promise.reject(error);
 });
 

@@ -11,10 +11,12 @@ interface IProps {
     error?:string;
     register:any;
     placeholder:string;
-    multiline?:boolean
+    multiline?:boolean;
+    type?:'text'| 'number' | 'date'
+    min?:number
 }
 
-const Input:FC<IProps> = ({label,name,required,error,register,placeholder,multiline}) => {
+const Input:FC<IProps> = ({label,name,required,error,register,placeholder,multiline,type='text',...others}) => {
   return (
     <div className='flex flex-col gap-1'>
         <div className='flex'>
@@ -27,6 +29,8 @@ const Input:FC<IProps> = ({label,name,required,error,register,placeholder,multil
          className={`min-h-[150px] md:text-lg border border-blue-400 px-3 py-2 rounded-md ${error ? "border-red-500 focus:outline-red-500":"focus:outline-blue-400"}`}
          placeholder={placeholder} />
         : <input
+            type={type}
+            {...others}
             {...register(name)}
             className={`md:text-lg border border-blue-400 px-3 py-3 rounded-md ${error ? "border-red-500 focus:outline-red-500":"focus:outline-blue-400"}`}
             placeholder={placeholder}

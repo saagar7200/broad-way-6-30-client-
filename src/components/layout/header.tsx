@@ -16,7 +16,7 @@ export const Header = () =>{
     }
     
     return(
-        <nav className='w-full flex justify-between items-center px-4'>
+        <nav className='w-full  flex justify-between items-center px-4'>
             <div>
                <p className='italic text-md '>Welcome back, {user?.user_name ?? user?.full_name}</p>
             </div>
